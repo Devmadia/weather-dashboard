@@ -28,21 +28,19 @@
             <form id="user-form" class="card-body">
             <label class="form-label" for="cityname"></label>
             <!-- Search Form Input -->
-            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn">SBI</button> <!-- Search Button Icon = SBI -->
+            <input id="city-searched" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button> <!-- Search Button Icon = SBI -->
             </form>
         </div>  
 
         <!-- Search Form History Display -->
         <div class="card">
             <h3 class="card-header text-uppercase">City History Display</h3>
-            <div class="card-body" id="city-history">
-            <!-- City names -->
-            </div>
+            <div class="card-body" id="city-history"><!-- City names --></div>
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row"> -->
         <!-- Current Search: City Display -->
         <div class="col-12 col-md-8">
             <h2 class="current-city">Current City<span id="currentCity"></span></h2>
@@ -51,10 +49,16 @@
     
         <!-- Current City: 5 Day Forecast -->
         <div class="row">5 Day Forecast of cards</div>
-    </div>
+    <!-- </div> -->
 
 
 </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
