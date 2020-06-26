@@ -21,31 +21,38 @@
 <!-- Navigation header ends-->
 
 <main class="flex-row justify-space-between">
-<div class="col-12 col-md-4">
-    <!-- Search form -->
-    <div class="card">
-        <h3 class="card-header text-uppercase">Search for a City</h3>
-        <form id="user-form" class="card-body">
-        <label class="form-label" for="cityname"></label>
-        <!-- Search Form Input -->
-        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-        <button type="submit" class="btn">Search Button Icon</button>
-        </form>
-    </div>  
+    <div class="col-12 col-md-4">
+        <!-- Search form -->
+        <div class="card">
+            <h3 class="card-header text-uppercase">Search for a City</h3>
+            <form id="user-form" class="card-body">
+            <label class="form-label" for="cityname"></label>
+            <!-- Search Form Input -->
+            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">SBI</button> <!-- Search Button Icon = SBI -->
+            </form>
+        </div>  
 
-
-    <!-- Search Form History Display -->
-    <div class="card">
-        <h3 class="card-header text-uppercase">City History Display</h3>
-        <div class="card-body" id="city-history">
-        <!-- City names -->
+        <!-- Search Form History Display -->
+        <div class="card">
+            <h3 class="card-header text-uppercase">City History Display</h3>
+            <div class="card-body" id="city-history">
+            <!-- City names -->
+            </div>
         </div>
     </div>
-    <!-- Current Search: City Display -->
 
-    <!-- Current City: 5 Day Forecast -->
+    <div class="row">
+        <!-- Current Search: City Display -->
+        <div class="col-12 col-md-8">
+            <h2 class="current-city">Current City<span id="currentCity"></span></h2>
+            <div id="currentCityForecast" class="list-group">Current City Forecast</div>
+        </div>
+    
+        <!-- Current City: 5 Day Forecast -->
+        <div class="row">5 Day Forecast of cards</div>
+    </div>
 
-</div>
 
 </main>
     <script src="./assets/js/main.js"></script>
