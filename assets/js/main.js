@@ -22,13 +22,12 @@ $("#search-button").on("click", function() {
 
 // creating the searched cities' list
 function addCity(city){
-    var li = $("<li>").addClass("list-group-item list-group-item-action").text(city);
-    $("#history-list").append(li);
-
+    var listCity = $("<li>").addClass("list-group-item list-group-item-action").text(city);
+    $("#history-list").append(listCity);
     saveCity(city);
 }
 
-// save searched cities to loacl storage for retrieval
+// save searched cities to local storage for retrieval
 function saveCity(city) {
     searchList.push(city);
     localStorage.setItem('userInput', JSON.stringify(searchList));
