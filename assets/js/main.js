@@ -23,7 +23,7 @@ $("#search-button").on("click", function() {
 // creating the searched cities' list
 function addCity(city){
     var listCity = $("<li>").addClass("list-group-item list-group-item-action").text(city);
-    $("#city-history").append(listCity);
+    $("#history-list").append(listCity);
     saveCity(city);
 }
 
