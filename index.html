@@ -21,22 +21,25 @@
 <!-- Navigation header ends-->
 
 <main class="flex-row justify-space-between">
-    <div class="col-12 col-md-4">
+    <div class="container-fluid">
         <!-- Search form -->
-        <div class="card">
-            <h3 class="card-header text-uppercase">Search for a City</h3>
-            <form id="user-form" class="card-body">
-            <label class="form-label" for="cityname"></label>
-            <!-- Search Form Input -->
-            <input id="city-searched" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button> <!-- Search Button Icon = SBI -->
-            </form>
-        </div>  
-
-        <!-- Search Form History Display -->
-        <div class="card">
-            <h3 class="card-header text-uppercase">City History Display</h3>
-            <div class="card-body" id="city-history"><!-- City names --></div>
+        <div class="row">
+            <div class="card bg-light">
+                <h3 class="card-header text-uppercase">Search for a City</h3>
+                <form id="user-form" class="form-inline">
+                <label class="form-label" for="cityname"></label>
+                <!-- Search Form Input -->
+                <input id="cityChoice" type="text" autofocus="true" class="form-control" />
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button> <!-- Search Button Icon = SBI -->
+                </form>
+            
+        
+                <!-- Search Form History Display -->
+                <h3 class="card-header text-uppercase">City History Display</h3>
+                <ul class="list-group city-history">
+                    <!-- City names -->
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -49,7 +52,7 @@
     
         <!-- Current City: 5 Day Forecast -->
         <div class="row">5 Day Forecast of cards</div>
-    <!-- </div> -->
+    </div>
 
 
 </main>
