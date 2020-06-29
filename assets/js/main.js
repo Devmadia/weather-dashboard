@@ -23,7 +23,7 @@ $("#search-button").on("click", function() {
 // creating the searched cities' list
 function addCity(city){
     var listCity = $("<li>").addClass("list-group-item list-group-item-action").text(city);
-    $("#history-list").append(listCity);
+    $("#city-history").append(listCity);
     saveCity(city);
 }
 
@@ -42,7 +42,7 @@ function loadCity() {
         return false;
     }
 
-    for(var i = 0; i < storedCity.length; i++){
+    for(var i = 0; i < storedCity.length; i++) {
         addCity(storedCity[i]);
     }
 }
@@ -50,13 +50,29 @@ function loadCity() {
 function getWeather(location) {
     fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
         .then(function(response) {
-            // add city to history list if not in list
-            if(!searchList.includes(response.name)){
-                addCity(response.name);
-            } else {
-                    alert("Unable to locate city.");
+            if(response.ok) {
+                response.json()
+                .then(function(response) {
+                // add city to history list if not in list
+                if(!searchList.includes(response.name)) {
+                    addCity(response.name);
+                } else {
+                        alert("Unable to locate city.");
+                }
+                
+                // display current weather
+                $("#current-city")
+                    .addClass("fetchedcolor")
+                    .text(response.name + " (" + new Date().toLocaleDateString() + ") ");
+                $("#temperature").text("Temperature: " + response.main.temp + "°F");
+                $("#humidity").text("Humidity: " + response.main.humidity + "%");
+                $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
+
+                // display 5 day forecast
+                NAMENEEDEDTOGETFORECAST(location);
+                })
             }
-        })
+        });
     }
 
 loadCity()
