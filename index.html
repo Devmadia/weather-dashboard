@@ -36,33 +36,29 @@
         
                 <!-- Search Form History Display -->
                 <h3 class="card-header mt-1">City History Display</h3>
-                <ul class="list-group city-history">
-                    <!-- City names -->
-                </ul>
+                <ul class="list-group city-history"><!-- City names --></ul>
             </div>
 
-            <!-- <div class="row"> -->
-        <!-- Current Search: City Display -->
-        <div class="col-12 col-md-8">
-            <h2 class="current-city">Current City Weather<span id="currentCity"></span></h2>
-            <div id="currentCityForecast" class="list-group">
-                <p id="temperature"></p>
-                <p id="humidity"></p>
-                <p id="windSpeed"></p>
-                <p id="uvindex"></p>
-            </div>
-        </div>
+            <!-- Current Search: City Display -->
+            <div class="col-12 col-md-8">
+                <h2 class="current-city">Current City Weather<span id="currentCity"></span></h2>
+                <div id="currentCityForecast" class="list-group">
+                    <p id="temperature"></p>
+                    <p id="humidity"></p>
+                    <p id="windSpeed"></p>
+                    <p id="uvindex"></p>
+                </div>
+
+                <!-- Current City: 5 Day Forecast -->
+                <div class="card p-3">
+                    <h3 class="card-header mb-3">5 Day Forecast</h3>
+                    <div id="forecast-container" class="row justify-content-center"></div>
+                </div>
+            </div>    
         </div>
     </div>
-
-    
-    
-        <!-- Current City: 5 Day Forecast -->
-        <div class="row">5 Day Forecast of cards</div>
-    </div>
-
-
 </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
