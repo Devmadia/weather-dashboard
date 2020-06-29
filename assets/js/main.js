@@ -15,7 +15,7 @@ $("#search-button").on("click", function(){
         alert("You must enter a city name!");
     }
     $("#cityChoice").val(""); // clears the field after user successfully enters a name, regardless if it is an actual city
-    getWeather(cityName)
+    getWeather('Austin')
 })
 
 
