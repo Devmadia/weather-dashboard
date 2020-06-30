@@ -5,6 +5,7 @@ var searchList = [];
 var preHeader = "https://";
 var laterDaily = 'f13f92d637d2cd810aaf91d2dbc3a24d';
 var wxOpenURL = "api.openweathermap.org/data/2.5/weather?q="
+var wxForecastURL = "api.openweathermap.org/data/2.5/forecast?q="
 var imperialUnits = "&units=imperial&appid=";
 
 // search button activation function
@@ -59,13 +60,14 @@ function getWeather(location) {
 }
 
 function fiveDayForecast(location) {
-    fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
+    fetch(preHeader + wxForecastURL + location + imperialUnits + laterDaily)
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
             // populating forecast element
-            $("#forecast").text(""); // nothing inside text() because it'll be generated after retrieved from OWM api
+            // nothing inside text() because it'll be generated after retrieved from OWM api
+            $("#forecast").text("");
 
             // view forecasts for the week
             for (var i = 0; i < response.list.length; i++) {
@@ -80,7 +82,7 @@ function fiveDayForecast(location) {
                     var temp = $("<p>").text("Temperature: " + Math.floor(response.list[i].main.temp) + "°F");
                     var humidity = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
 
-                    column.append(day,icon,temp,humidity);
+                    column.append(day, icon, temp, humidity);
                     $("#forecast").append(column);
                 }
             }
