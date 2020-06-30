@@ -38,7 +38,7 @@ function getWeather(location) {
                 } 
                 
                 // display current weather
-                $("#current-city")
+                $("#currentCity")
                     .addClass("fetchedcolor")
                     .text(response.name + " (" + new Date().toLocaleDateString() + ") ");
                 $("#temperature").text("Temperature: " + response.main.temp + "°F");
@@ -65,7 +65,7 @@ function fiveDayForecast(location) {
         })
         .then(function(response) {
             // populating forecast element
-            $("forecast").text(""); // nothing inside text() because it'll be generated after retrieved from OWM api
+            $("#forecast").text(""); // nothing inside text() because it'll be generated after retrieved from OWM api
 
             // view forecasts for the week
             for (var i = 0; i < response.list.length; i++) {
@@ -75,12 +75,12 @@ function fiveDayForecast(location) {
                     // generate cards for displaying the forecast
                     var column = $("<div>").addClass("col-md-2 m-2 fetchedcolor py-4");
                     var day = $("<h5>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
-                    var iconCode = response.list[i].weather[0].icon;
-                    var icon = $("<img>").attr("src", "https:openweathermap.org.img/w/"+ iconCode + ".png");
+                    var iconCode = response.list[i].weather[0].icon
+                    var icon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + iconCode + ".png");
                     var temp = $("<p>").text("Temperature: " + Math.floor(response.list[i].main.temp) + "°F");
                     var humidity = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
 
-                    column.append(day, icon, temp, humidity);
+                    column.append(day,icon,temp,humidity);
                     $("#forecast").append(column);
                 }
             }
@@ -109,7 +109,7 @@ function loadCity() {
     var storedCity = localStorage.getItem('userInput');
     storedCity = JSON.parse(storedCity);
 
-    if(!storedCity){
+    if(!storedCity) {
         return false;
     }
 
