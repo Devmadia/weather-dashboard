@@ -1,17 +1,16 @@
-// // DOM Elements
-// var userFormEl = document.querySelector("#user-form");
-// var nameInputEl = document.querySelector("#username");
-// user selection of cities searched
+// collect cities searched for in an array to call on later for the city history list
 var searchList = [];
 
+// fixes the issue with the api not properly working in vs code live server
 var preHeader = "https://";
-//var cityName = "Austin";
 var laterDaily = 'f13f92d637d2cd810aaf91d2dbc3a24d';
 var wxOpenURL = "api.openweathermap.org/data/2.5/weather?q="
 var imperialUnits = "&units=imperial&appid=";
 
+// search button activation function
 $("#search-button").on("click", function() {
-    event.preventDefault();
+    // cancels the event if it is cancelable
+    event.preventDefault(); 
     var cityName = $("#cityChoice").val();
     if(cityName === ''){ // user does not enter or pick a city
         alert("You must enter a city name!");
@@ -22,14 +21,18 @@ $("#search-button").on("click", function() {
 
 // creating the searched cities' list
 function addCity(city){
+    // introduces a list item element
     var listCity = $("<li>").addClass("list-group-item list-group-item-action").text(city);
+    // adds the searched city to the ul with a class of history-list
     $("#history-list").append(listCity);
     saveCity(city);
 }
 
 // save searched cities to local storage for retrieval
 function saveCity(city) {
+    // adds new items to the end of an array and returns the new length
     searchList.push(city);
+    // assigning saved cities under the key 'userInput' within the array called searchList
     localStorage.setItem('userInput', JSON.stringify(searchList));
 }
 
@@ -48,6 +51,7 @@ function loadCity() {
 }
 
 function getWeather(location) {
+    // retrieving information from weather api
     fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
         .then(function(response) {
             if(response.ok) {
@@ -69,10 +73,10 @@ function getWeather(location) {
                 $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
 
                 // display 5 day forecast
-                NAMENEEDEDTOGETFORECAST(location);
+                NAMENEEDEDTOGETFORECAST(location);  // need variable and function to call forecast for 5 days
                 })
             }
         });
-    }
+}
 
 loadCity()
