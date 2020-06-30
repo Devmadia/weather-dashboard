@@ -40,14 +40,13 @@ function getWeather(location) {
                 
                 // display current weather
                 $("#currentCity")
-                    .addClass("fetchedcolor")
                     .text(response.name + " (" + new Date().toLocaleDateString() + ") ");
                 $("#temperature").text("Temperature: " + response.main.temp + "°F");
                 $("#humidity").text("Humidity: " + response.main.humidity + "%");
                 $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
                 var iconCode = response.weather[0].icon;
                 var icon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + iconCode + ".png");
-                $("#cityName").append(icon);
+                $("#currentCity").append(icon);
 
                 // display 5 day forecast
                 fiveDayForecast(location);  // function to call forecast for 5 days
