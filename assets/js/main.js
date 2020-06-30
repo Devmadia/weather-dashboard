@@ -49,6 +49,33 @@ function getWeather(location) {
         });
 }
 
+function fiveDayForecast(location) {
+    fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response)) {
+            // populating forecast element
+            $("forecast").text(""); // nothing inside text() because it'll be generated after retrieved from OWM api
+
+            // view forecasts for the week
+            for(var i = 0; i < response.list.lengthl; i++) {
+                // midday forecast display as that should be the hottest part of the day generally
+                // https://stackoverflow.com/questions/59797104/getting-an-index-from-an-array-of-objects
+                if(reponse.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+                    var column = $("<div>").addClass("col-md-2 m-2 fetchedcolor py-4");
+                    var dy = $("<h5>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
+                    var iconCode = response.list[i].weather[0].iconCode
+                    var icon = $("<img>").attr("src", "https:openweathermap.org.img/w/"+ iconCode + ".png");
+                    var temp = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
+
+                    column.append();
+                    $("#forecast").append(column);
+                }
+            }
+        })
+}
+
 // creating the searched cities' list
 function addCity(city){
     // introduces a list item element
