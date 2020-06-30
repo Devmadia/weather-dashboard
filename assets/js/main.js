@@ -19,6 +19,36 @@ $("#search-button").on("click", function() {
     getWeather(cityName)
 })
 
+// gathering the weater for searched city and storing city name in an array to call on later
+function getWeather(location) {
+    // retrieving information from weather api
+    fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
+        .then(function(response) {
+            if(response.ok) {
+                response.json()
+                .then(function(response) {
+                // add city to history list if not in list
+                if(!searchList.includes(response.name)) {
+                    addCity(response.name);
+                } else {
+                        alert("Unable to locate city.");
+                }
+                
+                // display current weather
+                $("#current-city")
+                    .addClass("fetchedcolor")
+                    .text(response.name + " (" + new Date().toLocaleDateString() + ") ");
+                $("#temperature").text("Temperature: " + response.main.temp + "°F");
+                $("#humidity").text("Humidity: " + response.main.humidity + "%");
+                $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
+
+                // display 5 day forecast
+                NAMENEEDEDTOGETFORECAST(location);  // need variable and function to call forecast for 5 days
+                })
+            }
+        });
+}
+
 // creating the searched cities' list
 function addCity(city){
     // introduces a list item element
@@ -48,35 +78,6 @@ function loadCity() {
     for(var i = 0; i < storedCity.length; i++) {
         addCity(storedCity[i]);
     }
-}
-
-function getWeather(location) {
-    // retrieving information from weather api
-    fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
-        .then(function(response) {
-            if(response.ok) {
-                response.json()
-                .then(function(response) {
-                // add city to history list if not in list
-                if(!searchList.includes(response.name)) {
-                    addCity(response.name);
-                } else {
-                        alert("Unable to locate city.");
-                }
-                
-                // display current weather
-                $("#current-city")
-                    .addClass("fetchedcolor")
-                    .text(response.name + " (" + new Date().toLocaleDateString() + ") ");
-                $("#temperature").text("Temperature: " + response.main.temp + "°F");
-                $("#humidity").text("Humidity: " + response.main.humidity + "%");
-                $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
-
-                // display 5 day forecast
-                NAMENEEDEDTOGETFORECAST(location);  // need variable and function to call forecast for 5 days
-                })
-            }
-        });
 }
 
 loadCity()
