@@ -19,6 +19,11 @@ $("#search-button").on("click", function() {
     getWeather(cityName)
 })
 
+// when previously searched city is clicked, bring up weather
+function priorCity(){
+    getWeather(event.target.innerText);
+}
+
 // gathering the weater for searched city and storing city name in an array to call on later
 function getWeather(location) {
     // retrieving information from weather api
@@ -30,9 +35,7 @@ function getWeather(location) {
                 // add city to history list if not in list
                 if (!searchList.includes(response.name)) {
                     addCity(response.name);
-                } else {
-                        alert("Unable to locate city.");
-                }
+                } 
                 
                 // display current weather
                 $("#current-city")
@@ -41,10 +44,16 @@ function getWeather(location) {
                 $("#temperature").text("Temperature: " + response.main.temp + "°F");
                 $("#humidity").text("Humidity: " + response.main.humidity + "%");
                 $("#windSpeed").text("Wind speed: " + response.wind.speed + " MPH");
+                var iconCode = response.weather[0].icon;
+                var icon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + iconCode + ".png");
+                $("#cityName").append(icon);
 
                 // display 5 day forecast
-                NAMENEEDEDTOGETFORECAST(location);  // need variable and function to call forecast for 5 days
-                })
+                fiveDayForecast(location);  // function to call forecast for 5 days
+            })
+
+            } else {
+                alert("Unable to locate city.");
             }
         });
 }
@@ -62,13 +71,14 @@ function fiveDayForecast(location) {
             for (var i = 0; i < response.list.length; i++) {
                 // midday forecast display as that should be the hottest part of the day generally
                 // https://stackoverflow.com/questions/59797104/getting-an-index-from-an-array-of-objects
-                if (reponse.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1) {
                     // generate cards for displaying the forecast
                     var column = $("<div>").addClass("col-md-2 m-2 fetchedcolor py-4");
                     var day = $("<h5>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
                     var iconCode = response.list[i].weather[0].icon;
                     var icon = $("<img>").attr("src", "https:openweathermap.org.img/w/"+ iconCode + ".png");
-                    var temp = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
+                    var temp = $("<p>").text("Temperature: " + Math.floor(response.list[i].main.temp) + "°F");
+                    var humidity = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
 
                     column.append(day, icon, temp, humidity);
                     $("#forecast").append(column);
