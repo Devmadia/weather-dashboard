@@ -18,11 +18,13 @@
 - Upon clicking a city in the search history
   - user is presented with current and future conditions for that city
 
-### Forecasted Major Developments
+### Future Developments
 - Advanced icons for weather:
   - UV Index indicator
     - displays color to indicates if conditions are favorable, moderate, or severe
-
+- Allergen indicator
+  - response for various allergens in the air 
+  - air quality indicator for users with respiratory problems to review
 
 **Technology Used**
 - HTML/CSS
