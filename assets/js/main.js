@@ -12,7 +12,7 @@ $("#search-button").on("click", function() {
     // cancels the event if it is cancelable
     event.preventDefault(); 
     var cityName = $("#cityChoice").val();
-    if(cityName === ''){ // user does not enter or pick a city
+    if (cityName === ''){ // user does not enter or pick a city
         alert("You must enter a city name!");
     }
     $("#cityChoice").val(""); // clears the field after user successfully enters a name, regardless if it is an actual city
@@ -24,11 +24,11 @@ function getWeather(location) {
     // retrieving information from weather api
     fetch(preHeader + wxOpenURL + location + imperialUnits + laterDaily)
         .then(function(response) {
-            if(response.ok) {
+            if (response.ok) {
                 response.json()
                 .then(function(response) {
                 // add city to history list if not in list
-                if(!searchList.includes(response.name)) {
+                if (!searchList.includes(response.name)) {
                     addCity(response.name);
                 } else {
                         alert("Unable to locate city.");
@@ -54,22 +54,23 @@ function fiveDayForecast(location) {
         .then(function(response) {
             return response.json();
         })
-        .then(function(response)) {
+        .then(function(response) {
             // populating forecast element
             $("forecast").text(""); // nothing inside text() because it'll be generated after retrieved from OWM api
 
             // view forecasts for the week
-            for(var i = 0; i < response.list.lengthl; i++) {
+            for (var i = 0; i < response.list.length; i++) {
                 // midday forecast display as that should be the hottest part of the day generally
                 // https://stackoverflow.com/questions/59797104/getting-an-index-from-an-array-of-objects
-                if(reponse.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+                if (reponse.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+                    // generate cards for displaying the forecast
                     var column = $("<div>").addClass("col-md-2 m-2 fetchedcolor py-4");
-                    var dy = $("<h5>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
-                    var iconCode = response.list[i].weather[0].iconCode
+                    var day = $("<h5>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
+                    var iconCode = response.list[i].weather[0].icon;
                     var icon = $("<img>").attr("src", "https:openweathermap.org.img/w/"+ iconCode + ".png");
                     var temp = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
 
-                    column.append();
+                    column.append(day, icon, temp, humidity);
                     $("#forecast").append(column);
                 }
             }
