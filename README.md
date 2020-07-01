@@ -18,6 +18,10 @@
 - Upon clicking a city in the search history
   - user is presented with current and future conditions for that city
 
+![Screenshot of Weather Dashboard](https://devmadia.github.io/weather-dashboard/assets/images/WD1.png)
+
+![Screenshot of Weather Dashboard](https://devmadia.github.io/weather-dashboard/assets/images/WD2.png)
+
 ### Future Developments
 - Advanced icons for weather:
   - UV Index indicator
@@ -35,3 +39,5 @@
 
 **Resources**
 - Open Weather Map
+
+![Screenshot of Weather Dashboard](https://devmadia.github.io/weather-dashboard/assets/images/WeatherDashboard.png)
